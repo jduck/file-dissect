@@ -1,0 +1,9 @@
+File Dissect is a cross-platform framework and UI for analyzing
+various file formats. It is based on wxWidgets since it provides a
+native feel regardless of base OS. It has been designed with a tiered
+plug-in architecture to facilitate the quick and easy addition of new
+dissectors or sub-dissectors.
+
+It was originally developed during jduck's tenure at VeriSign's
+iDefense Labs from 2007 til 2009. It was subsequently released under
+a BSD License, the license which it holds today.
