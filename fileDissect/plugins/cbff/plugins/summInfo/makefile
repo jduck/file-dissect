@@ -31,7 +31,7 @@ $(SI): $(SI_OBJS)
 
 clean:
 	rm -f $(SI_OBJS) $(BINS)
-	rm -f fileDissectSel.cpp
+	rm -f fileDissectSel.cpp cbffStream.cpp
 
 
 .cpp.o:
