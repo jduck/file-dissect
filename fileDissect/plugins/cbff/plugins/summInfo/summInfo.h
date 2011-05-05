@@ -77,6 +77,7 @@ struct SummaryInformationProperty
 #define SVT_ULONG		0x13
 #define SVT_STRING		0x1e
 #define SVT_FILETIME	0x40
+#define SVT_BLOB		0x41
 #define SVT_CLIPBOARD	0x47
 
 

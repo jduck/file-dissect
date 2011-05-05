@@ -204,8 +204,18 @@ void summInfo::DissectStream(cbffStream *pStream)
 		wxTreeItemId id = m_tree->AppendItem(sec_id, wxT("Header"),
 			-1, -1, new fdTIData(off, sizeof(SummaryInformationSectionDeclaration)));
 
-		if (memcmp(&FMTID_SummaryInformation, &(psd[i].clsid), sizeof(CLSID)) == 0)
-			return;
+		if (pStream->m_name == wxT("\x05SummaryInformation"))
+		{
+			if (memcmp(&FMTID_SummaryInformation, &(psd[i].clsid), sizeof(CLSID)) != 0)
+				wxLogWarning(wxT("%s: Section %lu CLSID is not FMTID_SummaryInformation!"), wxT("summInfo::DissectStream()"), i);
+		}
+		else if (pStream->m_name == (wxT("\x05") wxT("DocumentSummaryInformation")))
+		{
+			if (i == 0 && memcmp(&FMTID_DocSummaryInformation, &(psd[i].clsid), sizeof(CLSID)) != 0)
+				wxLogWarning(wxT("%s: Section %lu CLSID is not FMTID_DocSummaryInformation!"), wxT("summInfo::DissectStream()"), i);
+			if (i == 1 && memcmp(&FMTID_UserDefinedProperties, &(psd[i].clsid), sizeof(CLSID)) != 0)
+				wxLogWarning(wxT("%s: Section %lu CLSID is not FMTID_UserDefinedProperties!"), wxT("summInfo::DissectStream()"), i);
+		}
 
 		// ...add declaration data...
 		m_tree->AppendItem(id, wxString::Format(
@@ -360,9 +370,57 @@ void summInfo::DissectStream(cbffStream *pStream)
 					}
 					break;
 
+				case SVT_BLOB:
+					m_tree->AppendItem(id, wxString::Format(wxT("Length: 0x%08x"), pprop->u.ulDword1),
+						-1, -1, new fdTIData(off + FDT_OFFSET_OF(u.ulDword1, (*pprop)), 
+							FDT_SIZE_OF(u.ulDword1, (*pprop))));
+					if (pprop->u.ulDword1 > 0 && pprop->u.ulDword1 <= pStream->m_length)
+					{
+						BYTE *str;
+
+						str = pStream->m_data + psd[i].ulOffset + ppd[j].ulOffset + sizeof(struct SummaryInformationProperty);
+						off = pStream->GetFileOffset(psd[i].ulOffset + ppd[j].ulOffset + sizeof(struct SummaryInformationProperty));
+
+						wxString strValue = wxT("Value decoding not supported.");
+						m_tree->AppendItem(id, strValue, -1, -1, new fdTIData(off, pprop->u.ulDword1));
+					}
+					break;
+
+				case SVT_CLIPBOARD:
+					m_tree->AppendItem(id, wxString::Format(wxT("Length: 0x%08x"), pprop->u.ulDword1),
+						-1, -1, new fdTIData(off + FDT_OFFSET_OF(u.ulDword1, (*pprop)), 
+							FDT_SIZE_OF(u.ulDword1, (*pprop))));
+					if (pprop->u.ulDword1 > 0 && pprop->u.ulDword1 <= pStream->m_length)
+					{
+						ULONG left = pprop->u.ulDword1;
+						DWORD format;
+						BYTE *str;
+
+						if (left < sizeof(DWORD))
+						{
+							wxLogWarning(wxT("%s: Not enough data for Clipboard Data in section %lu property %lu"), wxT("summInfo::DissectStream()"), i, j);
+							break;
+						}
+						str = pStream->m_data + psd[i].ulOffset + ppd[j].ulOffset + sizeof(struct SummaryInformationProperty);
+						off = pStream->GetFileOffset(psd[i].ulOffset + ppd[j].ulOffset + sizeof(struct SummaryInformationProperty));
+
+						format = *(DWORD *)str;
+						m_tree->AppendItem(id, wxString::Format(wxT("Format: 0x%08x"), format),
+							-1, -1, new fdTIData(off, sizeof(DWORD)));
+						off += sizeof(DWORD);
+						left -= sizeof(DWORD);
+
+						if (left > 0)
+						{
+							wxString strValue = wxT("Value decoding not supported.");
+							//strValue += wxString::From8BitData((const char *)str, pprop->u.ulDword1);
+							m_tree->AppendItem(id, strValue, -1, -1, new fdTIData(off, left));
+						}
+					}
+					break;
+
 				// XXX: add support for more types
 				case SVT_FILETIME:
-				case SVT_CLIPBOARD:
 				default:
 					m_tree->AppendItem(id, wxT("Unsupported type!"));
 					break;
@@ -404,6 +462,9 @@ wxChar *summInfo::HumanReadablePropType(ULONG type)
 
 		case SVT_FILETIME:
 			return wxT("File Time");
+
+		case SVT_BLOB:
+			return wxT("BLOB");
 
 		case SVT_CLIPBOARD:
 			return wxT("Clipboard");
