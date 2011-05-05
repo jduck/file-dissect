@@ -88,8 +88,8 @@ void fileDissectFrame::InitGUI(const wxString& WXUNUSED(title))
 
 	// set up the horizontal sizer
 	wxSizer *sizerTop = new wxBoxSizer(wxHORIZONTAL);
-	sizerTop->Add(m_tree, 1, wxEXPAND | (wxTOP|wxLEFT|wxRIGHT), 8);
-	sizerTop->Add(m_contents, 0, wxEXPAND | (wxTOP|wxRIGHT), 8);
+	sizerTop->Add(m_contents, 0, wxEXPAND | (wxTOP|wxLEFT|wxRIGHT), 8);
+	sizerTop->Add(m_tree, 1, wxEXPAND | (wxTOP|wxRIGHT), 8);
 
 	wxSizer *sizerVert = new wxBoxSizer(wxVERTICAL);
 	sizerVert->Add(sizerTop, 2, wxEXPAND, 0);
