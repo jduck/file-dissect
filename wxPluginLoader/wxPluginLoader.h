@@ -77,7 +77,7 @@ typedef void *				libhandle_t;
 				libhandle_t h; \
 				if (!(h = WXPLL_LOAD(fullpath.fn_str()))) \
 				{ \
-				   	WXPLL_LOADERRMSG(); \
+				   	WXPLL_LOADERRMSG(""); \
 					wxLogError(wxT("Unable to load plugin \"%s\": %s"), \
 						fname.c_str(), errMsg.c_str()); \
 				   	cont = dir.GetNext(&fname); \
