@@ -1,21 +1,15 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fileDissect", "fileDissect\fileDissect.vcproj", "{03362E13-9438-4467-AAF4-CAEB76B17844}"
-	ProjectSection(ProjectDependencies) = postProject
-		{96755F53-5EDF-4E34-AB61-B85EB8BDE90E} = {96755F53-5EDF-4E34-AB61-B85EB8BDE90E}
-	EndProjectSection
-EndProject
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "fd plugins", "fd plugins", "{1DBB020C-046B-41D1-A017-05C1D66BF372}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "cbff plugins", "cbff plugins", "{B0569127-79DA-40B7-BC4D-605E17146675}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cbff", "fileDissect\plugins\cbff\cbff.vcproj", "{96755F53-5EDF-4E34-AB61-B85EB8BDE90E}"
-	ProjectSection(ProjectDependencies) = postProject
-		{ED6380E9-9EA6-4097-B5BF-7EB6AFA8EE61} = {ED6380E9-9EA6-4097-B5BF-7EB6AFA8EE61}
-	EndProjectSection
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fileDissect", "fileDissect\fileDissect.vcxproj", "{03362E13-9438-4467-AAF4-CAEB76B17844}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "summInfo", "fileDissect\plugins\cbff\plugins\summInfo\summinfo.vcproj", "{ED6380E9-9EA6-4097-B5BF-7EB6AFA8EE61}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cbff", "fileDissect\plugins\cbff\cbff.vcxproj", "{96755F53-5EDF-4E34-AB61-B85EB8BDE90E}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "summinfo", "fileDissect\plugins\cbff\plugins\summInfo\summinfo.vcxproj", "{ED6380E9-9EA6-4097-B5BF-7EB6AFA8EE61}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
