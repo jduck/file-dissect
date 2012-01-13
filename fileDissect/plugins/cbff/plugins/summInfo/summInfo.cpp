@@ -10,6 +10,8 @@
 // Format IDs : windows appears to have these definted in objidl.h
 #ifndef __objidl_h__
 CLSID FMTID_SummaryInformation = { 0xf29f85e0, 0x4ff9, 0x1068, { 0xab, 0x91, 0x08, 0x00, 0x2b, 0x27, 0xb3, 0xd9 } };
+CLSID FMTID_DocSummaryInformation = { 0xd5cdd502, 0x2e9c, 0x101b, { 0x93, 0x97, 0x08, 0x00, 0x2b, 0x2c, 0xf9, 0xae } };
+CLSID FMTID_UserDefinedProperties = { 0xd5cdd505, 0x2e9c, 0x101b, { 0x93, 0x97, 0x08, 0x00, 0x2b, 0x2c, 0xf9, 0xae } };
 #endif
 
 // map of property types -> property value types
@@ -119,8 +121,7 @@ void summInfo::DissectStream(cbffStream *pStream)
 	}
 
 	// add the header to the tree
-	struct SummaryInformationHeader *phdr;
-	phdr = (struct SummaryInformationHeader *)pStream->m_data;
+	struct SummaryInformationHeader *phdr = (struct SummaryInformationHeader *)pStream->m_data;
 	// XXX: what about tiny tiny mini sector sizes??
 	wxFileOffset off = pStream->GetFileOffset(0);
 	wxTreeItemId hdr_id = m_tree->AppendItem(pStream->m_id, wxT("Header"), -1, -1, 
@@ -171,14 +172,14 @@ void summInfo::DissectStream(cbffStream *pStream)
 	}
 
 	// ensure the section count wont overflow for the check below
-	if (phdr->ulSectionCount > (ULONG_MAX / sizeof(struct SummaryInformationSectionDeclaration)))
+	if (phdr->ulSectionCount > (0xffffffff / sizeof(struct SummaryInformationSectionDeclaration)))
 	{
 		wxLogError(wxT("%s: Section count would cause integer overflow!"), wxT("summInfo::DissectStream()"));
 		return;
 	}
 	ULONG ulSHdrSz = phdr->ulSectionCount * sizeof(struct SummaryInformationSectionDeclaration);
 	// adding the static size might cause overflow too
-	if (ULONG_MAX - ulSHdrSz < sizeof(SummaryInformationHeader))
+	if (0xffffffff - ulSHdrSz < sizeof(SummaryInformationHeader))
 	{
 		wxLogError(wxT("%s: Adding header size would cause integer overflow!"), wxT("summInfo::DissectStream()"));
 		return;
