@@ -100,9 +100,14 @@ void wxFileMap::Close(void)
 }
 
 
-wxByte *wxFileMap::GetAddress()
+wxByte *wxFileMap::GetBaseAddress()
 {
 	return m_ptr;
+}
+
+wxByte *wxFileMap::GetAddress()
+{
+	return m_ptr + m_offset;
 }
 
 wxFileOffset wxFileMap::Length(void)
@@ -147,4 +152,30 @@ wxFileOffset wxFileMap::Seek(wxFileOffset ofs, wxSeekMode mode)
 	m_offset = ofs;
 
 	return ofs;
+}
+
+
+wxByte *wxFileMap::FindString(const char *str)
+{
+	wxByte *p = m_ptr + m_offset;
+	wxByte *end = m_ptr + m_len;
+	size_t len = strlen(str);
+
+	while (1)
+	{
+		// find next occurrence of first char
+		while (p < end && *p != *str)
+			p++;
+		// eek!
+		if (p >= end)
+			break;
+		// check if the entire string is there
+		if (memcmp(p, str, len) == 0)
+			return p;
+		// skip current occurrence of byte
+		p++;
+	}
+
+	// not found :(
+	return NULL;
 }
