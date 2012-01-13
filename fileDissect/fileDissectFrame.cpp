@@ -118,7 +118,7 @@ void fileDissectFrame::InitFormats(void)
 {
 	m_formats = new fileDissectFmts();
 	m_formats->LoadPlugins(m_log, m_tree);
-	m_strWildcard = wxT("");
+	m_strWildcard = wxT("All Files (*.*)|*.*");
 
 	// build the file list based on modules
 	wxString strExts = wxT("");
@@ -142,7 +142,7 @@ void fileDissectFrame::InitFormats(void)
 			if (!m_strWildcard.empty())
 				m_strWildcard += wxT("|");
 			m_strWildcard += p->m_description;
-			m_strWildcard += wxT("(");
+			m_strWildcard += wxT(" (");
 			m_strWildcard += strExts;
 			m_strWildcard += wxT(")|");
 			m_strWildcard += strExts;
