@@ -393,14 +393,14 @@ struct WorkbookFORMATRecord
 struct WorkbookWRITEACCESSRecord7
 {
 	BYTE cch;			// Length of user name
-	CHAR stName[31];	// User name (space padded)
+	BYTE stName[31];	// User name (space padded)
 };
 
 struct WorkbookWRITEACCESSRecord8
 {
 	USHORT cch;			// length of string
 	BYTE grbit;			// string options
-	CHAR stName[109];	// user name (space padded)
+	BYTE stName[109];	// user name (space padded)
 };
 
 struct WorkbookBOUNDSHEETRecord
