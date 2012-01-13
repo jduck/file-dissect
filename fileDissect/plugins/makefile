@@ -2,7 +2,7 @@
 # fd plugins dir makefile for GCC/G++
 #
 
-DIRS = cbff
+DIRS = cbff pdf
 FDPATH = ../..
 BINDIR = $(FDPATH)/bin/plugins
 

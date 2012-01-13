@@ -1,0 +1,61 @@
+0x1001:UNITS:Chart Units
+0x1002:CHART:Location and Overall Chart Dimensions
+0x1003:SERIES:Series Definition
+0x1006:DATAFORMAT:Series and Data Point Numbers
+0x1007:LINEFORMAT:Style of a Line or Border
+0x1009:MARKERFORMAT:Style of a Line Marker
+0x100A:AREAFORMAT:Colors and Patterns for an Area
+0x100B:PIEFORMAT:Position of the Pie Slice
+0x100C:ATTACHEDLABEL:Series Data/Value Labels
+0x100D:SERIESTEXT:Legend/Category/Value Text
+0x1014:CHARTFORMAT:Parent Record for Chart Group
+0x1015:LEGEND:Legend Type and Position
+0x1016:SERIESLIST:Specifies the Series in an Overlay Chart
+0x1017:BAR:Chart Group is a Bar or Column Chart Group
+0x1018:LINE:Chart Group Is a Line Chart Group
+0x1019:PIE:Chart Group Is a Pie Chart Group
+0x101A:AREA:Chart Group Is an Area Chart Group
+0x101B:SCATTER:Chart Group Is a Scatter Chart Group
+0x101C:CHARTLINE:Drop/Hi-Lo/Series Lines on a Line Chart
+0x101D:AXIS:Axis Type
+0x101E:TICK:Tick Marks and Labels Format
+0x101F:VALUERANGE:Defines Value Axis Scale
+0x1020:CATSERRANGE:Defines a Category or Series Axis
+0x1021:AXISLINEFORMAT:Defines a Line That Spans an Axis
+0x1022:CHARTFORMATLINK:Not Used
+0x1024:DEFAULTTEXT:Default Data Label Text Properties
+0x1025:TEXT:Defines Display of Text Fields
+0x1026:FONTX:Font Index
+0x1027:OBJECTLINK:Attaches Text to Chart or to Chart Item
+0x1032:FRAME:Defines Border Shape Around Displayed Text
+0x1033:BEGIN:Defines the Beginning of an Object
+0x1034:END:Defines the End of an Object
+0x1035:PLOTAREA:Frame Belongs to Plot Area 
+0x103A:3D:Chart Group Is a 3-D Chart Group
+0x103C:PICF:Picture Format
+0x103D:DROPBAR:Defines Drop Bars
+0x103E:RADAR:Chart Group Is a Radar Chart Group
+0x103F:SURFACE:Chart Group Is a Surface Chart Group
+0x1040:RADARAREA:Chart Group Is a Radar Area Chart Group
+0x1041:AXISPARENT:Axis Size and Location
+0x1043:LEGENDXN:Legend Exception
+0x1044:SHTPROPS:Sheet Properties
+0x1045:SERTOCRT:Series Chart-Group Index
+0x1046:AXESUSED:Number of Axes Sets
+0x1048:SBASEREF:PivotTable Reference
+0x104A:SERPARENT:Trendline or ErrorBar Series Index
+0x104B:SERAUXTREND:Series Trendline
+0x104E:IFMT:Number-Format Index
+0x104F:POS:Position Information
+0x1050:ALRUNS:Text Formatting
+0x1051:AI:Linked Data
+0x105B:SERAUXERRBAR:Series ErrorBar
+0x105D:SERFMT:Series Format
+0x1060:FBI:Font Basis
+0x1061:BOPPOP:Bar of Pie/Pie of Pie Chart Options
+0x1062:AXCEXT:Axis Options
+0x1063:DAT:Data Table Options
+0x1064:PLOTGROWTH:Font Scale Factors
+0x1065:SIINDEX:Series Index
+0x1066:GELFRAME:Fill Data
+0x1067:BOPPOPCUSTOM:Custom Bar of Pie/Pie of Pie Chart Options

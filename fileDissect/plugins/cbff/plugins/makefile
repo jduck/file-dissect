@@ -2,7 +2,7 @@
 # cbff plugins dir makefile for GCC/G++
 #
 
-DIRS = summInfo
+DIRS = summInfo excel
 FDPATH = ../../../..
 BINDIR = $(FDPATH)/bin/plugins/cbff
 

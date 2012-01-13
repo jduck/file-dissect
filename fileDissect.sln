@@ -11,6 +11,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cbff", "fileDissect\plugins
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "summinfo", "fileDissect\plugins\cbff\plugins\summInfo\summinfo.vcxproj", "{ED6380E9-9EA6-4097-B5BF-7EB6AFA8EE61}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "excel", "fileDissect\plugins\cbff\plugins\excel\excel.vcxproj", "{FAE031F5-4305-4113-9E48-91A80763A46C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -29,6 +31,10 @@ Global
 		{ED6380E9-9EA6-4097-B5BF-7EB6AFA8EE61}.Debug|Win32.Build.0 = Debug|Win32
 		{ED6380E9-9EA6-4097-B5BF-7EB6AFA8EE61}.Release|Win32.ActiveCfg = Release|Win32
 		{ED6380E9-9EA6-4097-B5BF-7EB6AFA8EE61}.Release|Win32.Build.0 = Release|Win32
+		{FAE031F5-4305-4113-9E48-91A80763A46C}.Debug|Win32.ActiveCfg = Debug|Win32
+		{FAE031F5-4305-4113-9E48-91A80763A46C}.Debug|Win32.Build.0 = Debug|Win32
+		{FAE031F5-4305-4113-9E48-91A80763A46C}.Release|Win32.ActiveCfg = Release|Win32
+		{FAE031F5-4305-4113-9E48-91A80763A46C}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -37,5 +43,6 @@ Global
 		{B0569127-79DA-40B7-BC4D-605E17146675} = {1DBB020C-046B-41D1-A017-05C1D66BF372}
 		{96755F53-5EDF-4E34-AB61-B85EB8BDE90E} = {1DBB020C-046B-41D1-A017-05C1D66BF372}
 		{ED6380E9-9EA6-4097-B5BF-7EB6AFA8EE61} = {B0569127-79DA-40B7-BC4D-605E17146675}
+		{FAE031F5-4305-4113-9E48-91A80763A46C} = {B0569127-79DA-40B7-BC4D-605E17146675}
 	EndGlobalSection
 EndGlobal
