@@ -196,7 +196,7 @@ void fileDissectFrame::OpenFile(wxString& fname)
 		return;
 
 	wxFileOffset len = m_file->Length();
-	m_contents->SetData(m_file->GetAddress(), len);
+	m_contents->SetData(m_file->GetBaseAddress(), len);
 
 	// update the close menu item
 	m_mnuFile->Enable(IDM_FILE_CLOSE, true);
