@@ -185,7 +185,7 @@ struct WorkbookRecord *Workbook::GetNextRecord(void)
 		return (struct WorkbookRecord *)NULL;
 
 	// make sure we have enough for a record
-	if (m_end - m_cur < sizeof(struct WorkbookRecord))
+	if ((size_t)(m_end - m_cur) < sizeof(struct WorkbookRecord))
 	{
 		wxLogError(wxT("%s: Not enough data left for record header!"), wxT("Workbook::GetNextRecord()"));
 		return (struct WorkbookRecord *)NULL;
@@ -275,7 +275,7 @@ void Workbook::AddFORMATContents(cbffStream *pStream, wxTreeItemId &parent, stru
 		BYTE *pByte = (BYTE *)(prec + 1) + sizeof(struct WorkbookFORMATRecord);
 		DecodeString(pByte, len, pFMT->grbit, strValue);
 	}
-	m_tree->AppendItem(parent, wxString::Format(wxT("Value: %s"), strValue), -1, -1, 
+	m_tree->AppendItem(parent, wxString::Format(wxT("Value: %s"), strValue.c_str()), -1, -1,
 		new fdTIData(off + FDT_OFFSET_OF(grbit, (*pFMT)) + FDT_SIZE_OF(grbit, (*pFMT)), len));
 }
 
@@ -310,7 +310,7 @@ void Workbook::AddHEADERContents(cbffStream *pStream, wxTreeItemId &parent, stru
 		BYTE *pByte = cch + 3;
 		DecodeString(pByte, len, 0, strValue);
 	}
-	m_tree->AppendItem(parent, wxString::Format(wxT("Value: %s"), strValue), -1, -1, new fdTIData(off + 3, len));
+	m_tree->AppendItem(parent, wxString::Format(wxT("Value: %s"), strValue.c_str()), -1, -1, new fdTIData(off + 3, len));
 }
 
 
@@ -387,7 +387,7 @@ void Workbook::AddWRITEACCESSContents(cbffStream *pStream, wxTreeItemId &parent,
 	// note the cch value is ignored (fixed length string)
 	DecodeString(pByte, sizeof(pWA->stName), pWA->grbit, str_stName);
 	str_stName.Trim();
-	m_tree->AppendItem(parent, wxString::Format(wxT("User name: %s"), str_stName), -1, -1, 
+	m_tree->AppendItem(parent, wxString::Format(wxT("User name: %s"), str_stName.c_str()), -1, -1,
 		new fdTIData(off + FDT_OFFSET_OF(stName, (*pWA)), FDT_SIZE_OF(stName, (*pWA))));
 
 	/*
@@ -453,7 +453,7 @@ void Workbook::AddBOUNDSHEETContents(cbffStream *pStream, wxTreeItemId &parent, 
 		BYTE *pByte = (BYTE *)(prec + 1) + sizeof(struct WorkbookBOUNDSHEETRecord);
 		DecodeString(pByte, len, pBS->rg_grbit, strValue);
 	}
-	m_tree->AppendItem(parent, wxString::Format(wxT("Value: %s"), strValue), -1, -1, 
+	m_tree->AppendItem(parent, wxString::Format(wxT("Value: %s"), strValue.c_str()), -1, -1, 
 		new fdTIData(off + FDT_OFFSET_OF(rg_grbit, (*pBS)) + FDT_SIZE_OF(rg_grbit, (*pBS)), len));
 
 	// extra validation -- see if the boundsheet is pointing to a BOF record
@@ -525,7 +525,7 @@ void Workbook::AddFONTContents(cbffStream *pStream, wxTreeItemId &parent, struct
 		DecodeString(pByte, len, pFONT->rg_grbit, strValue);
 	}
 	// XXX: maybe don't add tree item data if len < 1
-	m_tree->AppendItem(parent, wxString::Format(wxT("Value: %s"), strValue), -1, -1,
+	m_tree->AppendItem(parent, wxString::Format(wxT("Value: %s"), strValue.c_str()), -1, -1,
 		new fdTIData(off + sizeof(struct WorkbookFONTRecord), len));
 }
 
@@ -618,7 +618,7 @@ void Workbook::AddSSTContents(cbffStream *pStream, wxTreeItemId &parent, struct 
 
 			DecodeString(pByte, pWSZ->cch, pWSZ->grbit, strValue);
 
-			m_tree->AppendItem(str_id, wxString::Format(wxT("Value: %s"), strValue), -1, -1, 
+			m_tree->AppendItem(str_id, wxString::Format(wxT("Value: %s"), strValue.c_str()), -1, -1, 
 				new fdTIData(off + sizeof(struct WorkbookWSZ), len));
 
 			pByte += len;
@@ -2231,17 +2231,21 @@ size_t Workbook::GetStringLength(USHORT cch, USHORT grbit)
 
 double Workbook::RKDecode(ULONG encValue)
 {
+	bool bit_a = (encValue & 0x1);
+	bool bit_b = (encValue & 0x2);
 	double ret = 0;
 
-	if (encValue & 0x2)
-		ret = (double)(encValue >> 2);
+	// shift off these bits
+	encValue >>= 2;
+	if (bit_b)
+		ret = encValue;
 	else
-	{
-		encValue &= ~0x3;
-		*((long *)&ret + 1) = encValue;
-	}
-	if (encValue & 1)
-		ret /= 100.0;
+		// set the 30 most-significant bits only
+		*((ULONG *)&ret + 1) = encValue;
+
+	if (bit_a)
+	  ret /= 100.0;
+
 	return ret;
 }
 
