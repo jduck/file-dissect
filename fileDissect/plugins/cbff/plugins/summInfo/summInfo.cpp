@@ -3,7 +3,7 @@
  * Joshua J. Drake <jdrake idefense.com>
  * 
  * summinfo.h:
- * class declaration for summinfo cbffStreamPlugin class
+ * class implementation for summinfo cbffStreamPlugin class
  */
 #include "summInfo.h"
 
@@ -57,15 +57,17 @@ propType_t summInfoPropIds[] =
 	{ NULL,							0,					0 }
 };
 
+
 summInfo::summInfo(wxLog *plog, fileDissectTreeCtrl *tree)
 {
-	m_description = wxT("SummaryInformation Stream Dissector");
-
 	m_log = plog;
 	wxLog::SetActiveTarget(m_log);
 	m_tree = tree;
+
+	m_description = wxT("SummaryInformation Stream Dissector");
 	m_streams = 0;
 }
+
 
 void summInfo::MarkDesiredStreams(void)
 {
@@ -83,6 +85,7 @@ void summInfo::MarkDesiredStreams(void)
 		}
 	}
 }
+
 
 void summInfo::Dissect(void)
 {
