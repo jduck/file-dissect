@@ -41,6 +41,7 @@ public:
 	ssize_t Read(void *pBuf, size_t nCount);
 	wxFileOffset Seek(wxFileOffset ofs, wxSeekMode mode = wxFromStart);
 	wxByte *FindString(const char *str);
+	wxByte *FindStringReverse(const char *str);
 
 	wxByte *GetBaseAddress(void);
 	wxByte *GetAddress(void);

@@ -142,14 +142,21 @@ wxFileOffset wxFileMap::Seek(wxFileOffset ofs, wxSeekMode mode)
 	if (!m_ptr)
 		return wxInvalidOffset;
 
-	// not implementing other seek modes
-	if (mode != wxFromStart)
+	if (mode == wxFromStart)
+	{
+		if (ofs < 0 || ofs > m_len)
+			return wxInvalidOffset;
+		m_offset = ofs;
+	}
+	else if (mode == wxFromEnd)
+	{
+		if (ofs > 0 || (ofs < (-1 * m_len)))
+			return wxInvalidOffset;
+		m_offset = m_len + ofs;
+	}
+	else
+		// not implementing other seek modes
 		return wxInvalidOffset;
-
-	if (ofs < 0 || ofs > m_len)
-		return wxInvalidOffset;
-
-	m_offset = ofs;
 
 	return ofs;
 }
@@ -178,4 +185,39 @@ wxByte *wxFileMap::FindString(const char *str)
 
 	// not found :(
 	return NULL;
+}
+
+
+wxByte *wxFileMap::FindStringReverse(const char *str)
+{
+	size_t len = strlen(str);
+	wxByte *p = m_ptr + m_offset;
+	wxByte *end = m_ptr + m_len;
+	do
+	{
+		while (p > m_ptr && *p != *str)
+			p--;
+
+		if (p <= m_ptr)
+			return NULL;
+
+		if ((size_t)(end - p) < len) // should be safe, so we cast to get rid of warning
+		{
+			// not enough
+			p--;
+			continue;
+		}
+
+		if (memcmp(p, str, len) != 0)
+		{
+			// mismatch
+			p--;
+			continue;
+		}
+
+		// got it
+		break;
+	} while(1);
+
+	return p;
 }
