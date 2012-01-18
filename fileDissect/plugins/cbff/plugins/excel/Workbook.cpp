@@ -274,6 +274,7 @@ void Workbook::AddFORMATContents(cbffStream *pStream, wxTreeItemId &parent, stru
 	{
 		BYTE *pByte = (BYTE *)(prec + 1) + sizeof(struct WorkbookFORMATRecord);
 		DecodeString(pByte, len, pFMT->grbit, strValue);
+		len = GetStringLength(len, pFMT->grbit); // adjust length based on grbit
 	}
 	m_tree->AppendItem(parent, wxString::Format(wxT("Value: %s"), strValue.c_str()), -1, -1,
 		new fdTIData(off + FDT_OFFSET_OF(grbit, (*pFMT)) + FDT_SIZE_OF(grbit, (*pFMT)), len));
@@ -309,6 +310,7 @@ void Workbook::AddHEADERContents(cbffStream *pStream, wxTreeItemId &parent, stru
 	{
 		BYTE *pByte = cch + 3;
 		DecodeString(pByte, len, 0, strValue);
+		// grbit is hardcoded to 0
 	}
 	m_tree->AppendItem(parent, wxString::Format(wxT("Value: %s"), strValue.c_str()), -1, -1, new fdTIData(off + 3, len));
 }
@@ -452,6 +454,7 @@ void Workbook::AddBOUNDSHEETContents(cbffStream *pStream, wxTreeItemId &parent, 
 	{
 		BYTE *pByte = (BYTE *)(prec + 1) + sizeof(struct WorkbookBOUNDSHEETRecord);
 		DecodeString(pByte, len, pBS->rg_grbit, strValue);
+		len = GetStringLength(len, pBS->rg_grbit); // adjust length based on grbit
 	}
 	m_tree->AppendItem(parent, wxString::Format(wxT("Value: %s"), strValue.c_str()), -1, -1, 
 		new fdTIData(off + FDT_OFFSET_OF(rg_grbit, (*pBS)) + FDT_SIZE_OF(rg_grbit, (*pBS)), len));
@@ -523,6 +526,7 @@ void Workbook::AddFONTContents(cbffStream *pStream, wxTreeItemId &parent, struct
 	{
 		BYTE *pByte = (BYTE *)(prec + 1) + sizeof(struct WorkbookFONTRecord);
 		DecodeString(pByte, len, pFONT->rg_grbit, strValue);
+		len = GetStringLength(len, pFONT->rg_grbit); // adjust length based on grbit
 	}
 	// XXX: maybe don't add tree item data if len < 1
 	m_tree->AppendItem(parent, wxString::Format(wxT("Value: %s"), strValue.c_str()), -1, -1,
@@ -617,6 +621,7 @@ void Workbook::AddSSTContents(cbffStream *pStream, wxTreeItemId &parent, struct 
 			wxString strValue = wxT("");
 
 			DecodeString(pByte, pWSZ->cch, pWSZ->grbit, strValue);
+			// len already accounts for grbit here
 
 			m_tree->AppendItem(str_id, wxString::Format(wxT("Value: %s"), strValue.c_str()), -1, -1, 
 				new fdTIData(off + sizeof(struct WorkbookWSZ), len));
