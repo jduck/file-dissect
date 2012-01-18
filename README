@@ -7,7 +7,7 @@ dissectors or sub-dissectors.
 It has been contructed using a custom wxHexView widget and
 automatically associates items within a wxTreeView with positions
 within the wxHexView. As such, it is possible to select all associated
-bytes in the wxHexView by right clicking a node in the wxTreeView.
+bytes in the wxHexView by clicking a node in the wxTreeView.
 
 It was originally developed during jduck's tenure at VeriSign's
 iDefense Labs from 2007 til 2009. It was subsequently released under
