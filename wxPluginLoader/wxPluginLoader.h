@@ -63,7 +63,7 @@ typedef void *				libhandle_t;
 		}; \
 		void LoadPlugins(wxString &path, wxLog *plog, fileDissectTreeCtrl *tree) \
 		{ \
-			m_list.clear(); \
+			m_list.DeleteContents(false); \
 			wxDir dir(path); \
 			if (!dir.IsOpened()) return; \
 			wxString filespec(wxT("*.")); \
