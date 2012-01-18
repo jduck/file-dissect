@@ -19,7 +19,8 @@
 #define IDM_FILE_CLOSE 				2002
 #define IDM_FILE_SAVE 				2003
 #define IDM_FILE_SAVE_AS			2004
-#define IDM_FILE_EXIT 				2005
+#define IDM_FILE_RELOAD				2005
+#define IDM_FILE_EXIT 				2006
 
 // tools menu
 #define IDM_TOOLS_RESCAN			2500

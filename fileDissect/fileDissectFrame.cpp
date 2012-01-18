@@ -17,6 +17,7 @@ BEGIN_EVENT_TABLE(fileDissectFrame, wxFrame)
   EVT_MENU(IDM_FILE_CLOSE, fileDissectFrame::OnFileClose)
   // EVT_MENU(IDM_FILE_SAVE, fileDissectFrame::OnFileSave)
   // EVT_MENU(IDM_FILE_SAVE_AS, fileDissectFrame::OnFileSaveAs)
+  EVT_MENU(IDM_FILE_RELOAD, fileDissectFrame::OnFileReload)
   EVT_MENU(IDM_FILE_EXIT, fileDissectFrame::OnFileExit)
   EVT_MENU(IDM_TOOLS_RESCAN, fileDissectFrame::OnToolsRescan)
   EVT_MENU(IDM_NODE_EXPANDBELOW, fileDissectFrame::OnNodeExpandChildren)
@@ -46,9 +47,11 @@ void fileDissectFrame::InitGUI(const wxString& WXUNUSED(title))
 	// m_mnuFile->Append(IDM_FILE_NEW, wxT("&New..\tCtrl-N"));
 	m_mnuFile->Append(IDM_FILE_OPEN, wxT("&Open..\tCtrl-O"));
 	m_mnuFile->Append(IDM_FILE_CLOSE, wxT("&Close..\tCtrl-W"));
+	m_mnuFile->Enable(IDM_FILE_CLOSE, false);
 	// m_mnuFile->Append(IDM_FILE_SAVE, wxT("&Save..\tCtrl-S"));
 	// m_mnuFile->Append(IDM_FILE_SAVE_AS, wxT("Save &As.."));
-	m_mnuFile->Enable(IDM_FILE_CLOSE, false);
+	m_mnuFile->Append(IDM_FILE_RELOAD, wxT("&Reload.."));
+	m_mnuFile->Enable(IDM_FILE_RELOAD, false);
 	m_mnuFile->AppendSeparator();
 	m_mnuFile->Append(IDM_FILE_EXIT, wxT("E&xit"));
 
@@ -199,8 +202,9 @@ void fileDissectFrame::OpenFile(wxString& fname)
 	wxFileOffset len = m_file->Length();
 	m_contents->SetData(m_file->GetBaseAddress(), len);
 
-	// update the close menu item
+	// update the menu items that require an open file
 	m_mnuFile->Enable(IDM_FILE_CLOSE, true);
+	m_mnuFile->Enable(IDM_FILE_RELOAD, true);
 
 	// update the window
 	UpdateDisplay();
@@ -211,6 +215,7 @@ void fileDissectFrame::OnFileClose(wxCommandEvent& WXUNUSED(event))
 {
 	CloseFile();
 }
+
 
 void fileDissectFrame::CloseFile(void)
 {
@@ -224,6 +229,10 @@ void fileDissectFrame::CloseFile(void)
 		m_contents->SetData(NULL, 0);
 		if (m_plugin)
 			m_plugin->CloseFile();
+
+		// re-disable menu items that require a file being open
+		m_mnuFile->Enable(IDM_FILE_CLOSE, false);
+		m_mnuFile->Enable(IDM_FILE_RELOAD, false);
 	}
 }
 
@@ -252,6 +261,15 @@ fileDissectFrame::OnFileSaveAs(wxCommandEvent& event)
 	}
 }
 #endif
+
+void fileDissectFrame::OnFileReload(wxCommandEvent& event)
+{
+	// reload the file and reparse
+	wxString fname = m_file->m_filename; 
+	CloseFile();
+	OpenFile(fname);
+}
+
 
 void fileDissectFrame::OnFileExit(wxCommandEvent& WXUNUSED(event))
 {

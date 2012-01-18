@@ -51,6 +51,7 @@ public:
 	void OnFileClose(wxCommandEvent& event);
 	// void OnFileSave(wxCommandEvent& event);
 	// void OnFileSaveAs(wxCommandEvent& event);
+	void OnFileReload(wxCommandEvent& event);
 	void OnFileExit(wxCommandEvent& event);
 
 	// tools menu event handlers

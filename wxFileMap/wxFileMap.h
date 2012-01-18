@@ -47,7 +47,7 @@ public:
 	wxByte *GetAddress(void);
 	wxFileOffset Length(void);
 
-	const wxChar *m_filename;
+	wxString m_filename;
 
 protected:
 #ifdef __WXMSW__

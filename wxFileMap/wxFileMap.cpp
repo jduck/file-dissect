@@ -13,7 +13,6 @@ wxFileMap::wxFileMap (void)
 {
 	m_ptr = NULL;
 	m_offset = 0;
-	m_filename = NULL;
 }
 
 wxFileMap::~wxFileMap (void)
