@@ -2232,7 +2232,7 @@ size_t Workbook::GetStringLength(USHORT cch, USHORT grbit)
 double Workbook::RKDecode(ULONG encValue)
 {
 	bool bit_a = (encValue & 0x1);
-	bool bit_b = (encValue & 0x2);
+	bool bit_b = (encValue & 0x2) != 0;
 	double ret = 0;
 
 	// shift off these bits
