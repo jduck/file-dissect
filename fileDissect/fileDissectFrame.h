@@ -58,7 +58,8 @@ public:
 
 	// context menu event handlers
 	void OnNodeExpandChildren(wxCommandEvent& event);
-	void OnNodeHighlight(wxCommandEvent& event);
+	void OnNodeCollapseChildren(wxCommandEvent& event);
+	void OnNodeHighlight(wxCommandEvent& event); // probably not needed, since we do this on click
 
 	// gui items (tree below as well)
 	wxPanel *m_panel;				// main panel

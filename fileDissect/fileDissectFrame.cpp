@@ -20,6 +20,7 @@ BEGIN_EVENT_TABLE(fileDissectFrame, wxFrame)
   EVT_MENU(IDM_FILE_EXIT, fileDissectFrame::OnFileExit)
   EVT_MENU(IDM_TOOLS_RESCAN, fileDissectFrame::OnToolsRescan)
   EVT_MENU(IDM_NODE_EXPANDBELOW, fileDissectFrame::OnNodeExpandChildren)
+  EVT_MENU(IDM_NODE_COLLAPSEBELOW, fileDissectFrame::OnNodeCollapseChildren)
   EVT_MENU(IDM_NODE_HIGHLIGHT, fileDissectFrame::OnNodeHighlight)
 END_EVENT_TABLE();
 
@@ -263,6 +264,14 @@ void fileDissectFrame::OnNodeExpandChildren(wxCommandEvent& WXUNUSED(event))
 	wxTreeItemId id = m_tree->GetSelection();
 
 	m_tree->ExpandAllChildren(id);
+}
+
+
+void fileDissectFrame::OnNodeCollapseChildren(wxCommandEvent& WXUNUSED(event))
+{
+	wxTreeItemId id = m_tree->GetSelection();
+
+	m_tree->CollapseAllChildren(id);
 }
 
 

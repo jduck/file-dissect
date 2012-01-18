@@ -26,6 +26,7 @@
 
 // context menu stuff
 #define IDM_NODE_EXPANDBELOW		3000
-#define IDM_NODE_HIGHLIGHT			3001
+#define IDM_NODE_COLLAPSEBELOW		3001
+#define IDM_NODE_HIGHLIGHT			3002
 
 #endif

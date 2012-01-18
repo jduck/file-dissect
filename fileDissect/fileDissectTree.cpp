@@ -63,6 +63,10 @@ void fileDissectTreeCtrl::OnItemMenu(wxTreeEvent& event)
 	if (!HasChildren(id))
 		pm->Enable(false);
 
+	pm = mnuPopup.Append(IDM_NODE_COLLAPSEBELOW, wxT("&Collapse children"));
+	if (!HasChildren(id))
+		pm->Enable(false);
+
 	pm = mnuPopup.Append(IDM_NODE_HIGHLIGHT, wxT("&Highlight"));
 	if (!GetItemData(id))
 		pm->Enable(false);
