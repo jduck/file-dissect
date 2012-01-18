@@ -184,8 +184,7 @@ void cbff::Dissect(void)
 			break;
 		if (!DissectFAT())
 			break;
-		if (!DissectMiniFAT())
-			/* nothing */;
+		(void) DissectMiniFAT();
 		if (!DissectDirectory())
 			break;
 
