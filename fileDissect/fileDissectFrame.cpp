@@ -344,5 +344,7 @@ void fileDissectFrame::UpdateDisplay(void)
 
 void fileDissectFrame::OnToolsRescan(wxCommandEvent& WXUNUSED(event))
 {
+	if (m_plugin)
+		m_plugin = NULL;
 	m_formats->LoadPlugins(m_log, m_tree);
 }
