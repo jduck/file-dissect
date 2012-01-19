@@ -50,7 +50,7 @@ void fileDissectFrame::InitGUI(const wxString& WXUNUSED(title))
 	m_mnuFile->Enable(IDM_FILE_CLOSE, false);
 	// m_mnuFile->Append(IDM_FILE_SAVE, wxT("&Save..\tCtrl-S"));
 	// m_mnuFile->Append(IDM_FILE_SAVE_AS, wxT("Save &As.."));
-	m_mnuFile->Append(IDM_FILE_RELOAD, wxT("&Reload.."));
+	m_mnuFile->Append(IDM_FILE_RELOAD, wxT("&Reload..\tCtrl-R"));
 	m_mnuFile->Enable(IDM_FILE_RELOAD, false);
 	m_mnuFile->AppendSeparator();
 	m_mnuFile->Append(IDM_FILE_EXIT, wxT("E&xit"));
