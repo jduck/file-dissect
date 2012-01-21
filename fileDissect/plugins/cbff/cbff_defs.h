@@ -13,9 +13,11 @@
 // yay for wxWidgets
 typedef wxByte BYTE;
 typedef wxUint16 USHORT;
-typedef wxUint32 ULONG;
 typedef wxInt16 SHORT;
+#if WINVER < 0x600
+typedef wxUint32 ULONG;
 typedef wxInt32 LONG;
+#endif
 #else
 // NOTE: these might not be correct (particularly on 64-bit platforms)
 typedef unsigned char BYTE;
