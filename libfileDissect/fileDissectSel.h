@@ -9,6 +9,10 @@
 #ifndef __fileDissectSel_h__
 #define __fileDissectSel_h__
 
+#ifdef __linux__
+# define __declspec(x)
+#endif
+
 #include <wx/wxprec.h>
 #ifdef __BORLANDC__
 # pragma hdrstop

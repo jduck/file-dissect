@@ -9,6 +9,11 @@
 #ifndef __wxFileMap_h_
 #define __wxFileMap_h_
 
+#ifdef __linux__
+# define __declspec(x)
+#endif
+
+
 // we derive from wxFile
 
 // For compilers that support precompilation, includes "wx.h".

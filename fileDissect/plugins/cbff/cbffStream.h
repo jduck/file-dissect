@@ -8,6 +8,10 @@
 #ifndef __cbffStream_h_
 #define __cbffStream_h_
 
+#ifdef __linux__
+# define __declspec(x)
+#endif
+
 #include "fileDissect.h"
 #include <wx/treectrl.h>
 #include "cbff_defs.h"

@@ -275,7 +275,7 @@ void summInfo::DissectStream(cbffStream *pStream)
 		}
 
 		// prevent integer overflow with property count
-		if (pshdr->ulPropertyCount > (ULONG_MAX / sizeof(struct SummaryInformationPropertyDeclaration)))
+		if (pshdr->ulPropertyCount > (0xffffffff / sizeof(struct SummaryInformationPropertyDeclaration)))
 		{
 			wxLogError(wxT("%s: Section %lu property count would cause integer overflow!"), wxT("summInfo::DissectStream()"), i);
 			continue;
