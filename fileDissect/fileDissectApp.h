@@ -20,11 +20,11 @@
  */
 class fileDissectApp : public wxApp
 {
- public:
-	 bool OnInit();
-   
-   // frame window
-   fileDissectFrame *m_frame;
+public:
+	bool OnInit();
+
+	// frame window
+	fileDissectFrame *m_frame;
 };
 
 
