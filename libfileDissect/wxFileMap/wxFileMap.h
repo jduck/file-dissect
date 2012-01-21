@@ -31,21 +31,20 @@
 class wxFileMap : private wxFile
 {
 public:
-	wxFileMap (void);
-	~wxFileMap (void);
+	__declspec(dllexport) wxFileMap (void);
+	__declspec(dllexport) ~wxFileMap (void);
 
-	bool Open(const wxChar *filename, OpenMode mode = read,
-            int perms = wxS_DEFAULT);
-	void Close(void);
+	__declspec(dllexport) bool Open(const wxChar *filename, OpenMode mode = read, int perms = wxS_DEFAULT);
+	__declspec(dllexport) void Close(void);
 
-	ssize_t Read(void *pBuf, size_t nCount);
-	wxFileOffset Seek(wxFileOffset ofs, wxSeekMode mode = wxFromStart);
-	wxByte *FindString(const char *str);
-	wxByte *FindStringReverse(const char *str);
+	__declspec(dllexport) ssize_t Read(void *pBuf, size_t nCount);
+	__declspec(dllexport) wxFileOffset Seek(wxFileOffset ofs, wxSeekMode mode = wxFromStart);
+	__declspec(dllexport) wxByte *FindString(const char *str);
+	__declspec(dllexport) wxByte *FindStringReverse(const char *str);
 
-	wxByte *GetBaseAddress(void);
-	wxByte *GetAddress(void);
-	wxFileOffset Length(void);
+	__declspec(dllexport) wxByte *GetBaseAddress(void);
+	__declspec(dllexport) wxByte *GetAddress(void);
+	__declspec(dllexport) wxFileOffset Length(void);
 
 	wxString m_filename;
 

@@ -11,8 +11,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{FAE031F5-4305-4113-9E48-91A80763A46C}</ProjectGuid>
-    <RootNamespace>excel</RootNamespace>
+    <ProjectGuid>{02FDD8C6-0AC4-4C61-86AA-283ACE914474}</ProjectGuid>
+    <RootNamespace>libfileDissect</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -36,18 +36,15 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>$(SolutionDir)$(Configuration)\plugins\cbff\</OutDir>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>$(SolutionDir)$(Configuration)\plugins\cbff\</OutDir>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)\libfileDissect;$(SolutionDir)\fileDissect;$(SolutionDir)\fileDissect\plugins\cbff;C:\wxWidgets\include;C:\wxWidgets\include\msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\libfileDissect\wxFileMap;$(SolutionDir)\wxHexView;$(SolutionDir)\wxPluginLoader;C:\wxWidgets\include;C:\wxWidgets\include\msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <PreprocessorDefinitions>_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -61,7 +58,8 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(SolutionDir)\libfileDissect;$(SolutionDir)\fileDissect;$(SolutionDir)\fileDissect\plugins\cbff;C:\wxWidgets\include;C:\wxWidgets\include\msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\libfileDissect\wxFileMap;$(SolutionDir)\wxHexView;$(SolutionDir)\wxPluginLoader;C:\wxWidgets\include;C:\wxWidgets\include\msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -71,19 +69,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Workbook.h" />
-    <ClInclude Include="WorkbookDefs.h" />
+    <ClInclude Include="fileDissectItemData.h" />
+    <ClInclude Include="fileDissectSel.h" />
+    <ClInclude Include="wxFileMap\wxFileMap.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Workbook.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\libfileDissect\libfileDissect.vcxproj">
-      <Project>{02fdd8c6-0ac4-4c61-86aa-283ace914474}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\cbff.vcxproj">
-      <Project>{96755f53-5edf-4e34-ab61-b85eb8bde90e}</Project>
-    </ProjectReference>
+    <ClCompile Include="fileDissectItemData.cpp" />
+    <ClCompile Include="fileDissectSel.cpp" />
+    <ClCompile Include="wxFileMap\wxFileMap.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

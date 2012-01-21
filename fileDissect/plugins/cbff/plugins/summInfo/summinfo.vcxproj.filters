@@ -15,12 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\cbffStream.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\fileDissectSel.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="summInfo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

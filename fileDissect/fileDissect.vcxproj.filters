@@ -27,13 +27,7 @@
     <ClCompile Include="fileDissectFrame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="fileDissectSel.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="fileDissectTree.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\wxFileMap\wxFileMap.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\wxHexView\wxHexView.cpp">
@@ -62,13 +56,7 @@
     <ClInclude Include="fileDissectPlugin.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="fileDissectSel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="fileDissectTree.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\wxFileMap\wxFileMap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\wxHexView\wxHexView.h">

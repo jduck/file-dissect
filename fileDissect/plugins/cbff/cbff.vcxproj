@@ -40,7 +40,7 @@
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Configuration)\</IntDir>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)$(Configuration)\plugins\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Configuration)\</IntDir>
-    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
     <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
     <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
@@ -50,12 +50,13 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)\fileDissect;$(SolutionDir)\wxFileMap;C:\wxWidgets\include;C:\wxWidgets\include\msvc;$(SolutionDir)\wxPluginLoader;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\fileDissect;$(SolutionDir)\libfileDissect;$(SolutionDir)\libfileDissect\wxFileMap;$(SolutionDir)\wxPluginLoader;C:\wxWidgets\include;C:\wxWidgets\include\msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <PreprocessorDefinitions>_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <OutputFile>$(OutDir)$(ProjectName).dll</OutputFile>
@@ -68,7 +69,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(SolutionDir)\fileDissect;$(SolutionDir)\wxFileMap;C:\wxWidgets\include;C:\wxWidgets\include\msvc;$(SolutionDir)\wxPluginLoader;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\fileDissect;$(SolutionDir)\libfileDissect;$(SolutionDir)\libfileDissect\wxFileMap;$(SolutionDir)\wxPluginLoader;C:\wxWidgets\include;C:\wxWidgets\include\msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <WarningLevel>Level3</WarningLevel>
@@ -88,8 +89,6 @@
     <ClCompile Include="cbff.cpp" />
     <ClCompile Include="cbffStream.cpp" />
     <ClCompile Include="cbffStreamPlugins.cpp" />
-    <ClCompile Include="..\..\fileDissectSel.cpp" />
-    <ClCompile Include="..\..\..\wxFileMap\wxFileMap.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cbff.h" />
@@ -97,13 +96,11 @@
     <ClInclude Include="cbffStream.h" />
     <ClInclude Include="cbffStreamPlugin.h" />
     <ClInclude Include="cbffStreamPlugins.h" />
-    <ClInclude Include="..\..\..\wxFileMap\wxFileMap.h" />
     <ClInclude Include="..\..\..\wxPluginLoader\wxPluginLoader.h" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="plugins\summInfo\summinfo.vcxproj">
-      <Project>{ed6380e9-9ea6-4097-b5bf-7eb6afa8ee61}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    <ProjectReference Include="..\..\..\libfileDissect\libfileDissect.vcxproj">
+      <Project>{02fdd8c6-0ac4-4c61-86aa-283ace914474}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

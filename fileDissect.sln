@@ -6,12 +6,29 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "cbff plugins", "cbff plugins", "{B0569127-79DA-40B7-BC4D-605E17146675}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fileDissect", "fileDissect\fileDissect.vcxproj", "{03362E13-9438-4467-AAF4-CAEB76B17844}"
+	ProjectSection(ProjectDependencies) = postProject
+		{96755F53-5EDF-4E34-AB61-B85EB8BDE90E} = {96755F53-5EDF-4E34-AB61-B85EB8BDE90E}
+		{02FDD8C6-0AC4-4C61-86AA-283ACE914474} = {02FDD8C6-0AC4-4C61-86AA-283ACE914474}
+		{ED6380E9-9EA6-4097-B5BF-7EB6AFA8EE61} = {ED6380E9-9EA6-4097-B5BF-7EB6AFA8EE61}
+		{FAE031F5-4305-4113-9E48-91A80763A46C} = {FAE031F5-4305-4113-9E48-91A80763A46C}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cbff", "fileDissect\plugins\cbff\cbff.vcxproj", "{96755F53-5EDF-4E34-AB61-B85EB8BDE90E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{02FDD8C6-0AC4-4C61-86AA-283ACE914474} = {02FDD8C6-0AC4-4C61-86AA-283ACE914474}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "summinfo", "fileDissect\plugins\cbff\plugins\summInfo\summinfo.vcxproj", "{ED6380E9-9EA6-4097-B5BF-7EB6AFA8EE61}"
+	ProjectSection(ProjectDependencies) = postProject
+		{02FDD8C6-0AC4-4C61-86AA-283ACE914474} = {02FDD8C6-0AC4-4C61-86AA-283ACE914474}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "excel", "fileDissect\plugins\cbff\plugins\excel\excel.vcxproj", "{FAE031F5-4305-4113-9E48-91A80763A46C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{02FDD8C6-0AC4-4C61-86AA-283ACE914474} = {02FDD8C6-0AC4-4C61-86AA-283ACE914474}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libfileDissect", "libfileDissect\libfileDissect.vcxproj", "{02FDD8C6-0AC4-4C61-86AA-283ACE914474}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +52,10 @@ Global
 		{FAE031F5-4305-4113-9E48-91A80763A46C}.Debug|Win32.Build.0 = Debug|Win32
 		{FAE031F5-4305-4113-9E48-91A80763A46C}.Release|Win32.ActiveCfg = Release|Win32
 		{FAE031F5-4305-4113-9E48-91A80763A46C}.Release|Win32.Build.0 = Release|Win32
+		{02FDD8C6-0AC4-4C61-86AA-283ACE914474}.Debug|Win32.ActiveCfg = Debug|Win32
+		{02FDD8C6-0AC4-4C61-86AA-283ACE914474}.Debug|Win32.Build.0 = Debug|Win32
+		{02FDD8C6-0AC4-4C61-86AA-283ACE914474}.Release|Win32.ActiveCfg = Release|Win32
+		{02FDD8C6-0AC4-4C61-86AA-283ACE914474}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

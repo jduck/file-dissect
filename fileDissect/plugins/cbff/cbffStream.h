@@ -18,7 +18,7 @@ public:
 	cbffStream(wxString &name);
 	~cbffStream(void);
 
-	wxFileOffset GetFileOffset(wxFileOffset streamOffset);
+	__declspec(dllexport) wxFileOffset GetFileOffset(wxFileOffset streamOffset);
 
 	wxString m_name;
 

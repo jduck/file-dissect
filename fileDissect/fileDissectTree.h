@@ -10,34 +10,7 @@
 
 #include "fileDissect.h"		// wxWidgets base
 #include <wx/treectrl.h> 		// tree control
-#include "fileDissectSel.h"		// selection list
-
-
-// macro to calculate the offset into a structure
-#define FDT_OFFSET_OF(member,stru) \
-	((wxByte *)&(stru.member) - (wxByte *)&stru)
-#define FDT_SIZE_OF(member,stru) \
-	(sizeof(stru.member))
-// macro to make a new item for this structure member
-#define FDT_NEW(member,stru) \
-	new fdTIData( \
-		FDT_OFFSET_OF(member,stru), \
-		FDT_SIZE_OF(member,stru))
-
-/* 
- * the item data class for our tree 
- */
-class fdTIData : public wxTreeItemData
-{
-public:
-	fdTIData(const wxFileOffset offset_start, const wxFileOffset length)
-	{
-		m_selected.AddToSelection(offset_start, offset_start + length);
-	};
-
-	// list of selected bytes
-	fileDissectSelList m_selected;
-};
+#include "fileDissectItemData.h"
 
 
 /* 

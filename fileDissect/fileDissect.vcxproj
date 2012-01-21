@@ -40,7 +40,7 @@
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Configuration)\</IntDir>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Configuration)\</IntDir>
-    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
     <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
     <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
@@ -50,12 +50,13 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)\wxFileMap;$(SolutionDir)\wxHexView;$(SolutionDir)\wxPluginLoader;C:\wxWidgets\include;C:\wxWidgets\include\msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\libfileDissect;$(SolutionDir)\libfileDissect\wxFileMap;$(SolutionDir)\wxHexView;$(SolutionDir)\wxPluginLoader;C:\wxWidgets\include;C:\wxWidgets\include\msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <PreprocessorDefinitions>_UNICODE;UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <AdditionalDependencies>comctl32.lib;rpcrt4.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -68,7 +69,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(SolutionDir)\wxFileMap;$(SolutionDir)\wxHexView;$(SolutionDir)\wxPluginLoader;C:\wxWidgets\include;C:\wxWidgets\include\msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\libfileDissect;$(SolutionDir)\libfileDissect\wxFileMap;$(SolutionDir)\wxHexView;$(SolutionDir)\wxPluginLoader;C:\wxWidgets\include;C:\wxWidgets\include\msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <WarningLevel>Level3</WarningLevel>
@@ -89,9 +90,7 @@
     <ClCompile Include="fileDissectDnD.cpp" />
     <ClCompile Include="fileDissectFmts.cpp" />
     <ClCompile Include="fileDissectFrame.cpp" />
-    <ClCompile Include="fileDissectSel.cpp" />
     <ClCompile Include="fileDissectTree.cpp" />
-    <ClCompile Include="..\wxFileMap\wxFileMap.cpp" />
     <ClCompile Include="..\wxHexView\wxHexView.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -102,16 +101,13 @@
     <ClInclude Include="fileDissectFrame.h" />
     <ClInclude Include="fileDissectGUI.h" />
     <ClInclude Include="fileDissectPlugin.h" />
-    <ClInclude Include="fileDissectSel.h" />
     <ClInclude Include="fileDissectTree.h" />
-    <ClInclude Include="..\wxFileMap\wxFileMap.h" />
     <ClInclude Include="..\wxHexView\wxHexView.h" />
     <ClInclude Include="..\wxPluginLoader\wxPluginLoader.h" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="plugins\cbff\cbff.vcxproj">
-      <Project>{96755f53-5edf-4e34-ab61-b85eb8bde90e}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    <ProjectReference Include="..\libfileDissect\libfileDissect.vcxproj">
+      <Project>{02fdd8c6-0ac4-4c61-86aa-283ace914474}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

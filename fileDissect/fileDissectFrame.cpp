@@ -314,8 +314,8 @@ void fileDissectFrame::HighlightItem(wxTreeItemId &id)
 
 	// update the selection based on the node data
 	wxFileOffset start = m_file->Length();
-	for (fileDissectSelList::iterator i = pTID->m_selected.begin();
-		i != pTID->m_selected.end();
+	for (fdTIData::iterator i = pTID->begin();
+		i != pTID->end();
 		i++)
 	{
 		fileDissectSel *pSel = *i;
