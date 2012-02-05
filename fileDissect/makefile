@@ -4,7 +4,7 @@ CPPFLAGS = -ggdb -Wall -Wextra `wx-config --cflags`
 PATHREL = ..
 INCLUDE = -I$(PATHREL)/fileDissect -I$(PATHREL)/libfileDissect -I$(PATHREL)/libfileDissect/wxFileMap -I$(PATHREL)/wxHexView -I$(PATHREL)/wxPluginLoader
 BINDIR = $(PATHREL)/bin
-LDFLAGS = -L$(BINDIR) -lfileDissect `wx-config --libs`
+LDFLAGS = -L$(BINDIR) -lfileDissect `wx-config --libs` -ldl
 
 FD = $(BINDIR)/fd
 BINS = $(FD)

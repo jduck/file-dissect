@@ -2,7 +2,7 @@ CPP = g++
 CPPFLAGS = -ggdb -fPIC -Wall -Wextra `wx-config --cflags`
 FDPATH = ../../..
 INCLUDE = -I$(FDPATH)/fileDissect -I$(FDPATH)/libfileDissect -I$(FDPATH)/libfileDissect/wxFileMap -I$(FDPATH)/wxHexView -I$(FDPATH)/wxPluginLoader
-LDFLAGS = `wx-config --libs`
+LDFLAGS = `wx-config --libs` -ldl
 
 BINDIR = $(FDPATH)/bin/plugins
 
